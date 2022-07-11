@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Account from "./pages/Account";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <AuthContextProvider>
         <Navbar />
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

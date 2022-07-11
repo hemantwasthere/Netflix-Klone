@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/AuthContext'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -16,9 +16,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       await signUp(email, password);
-      setTimeout(() => {
-        navigate('/')
-      }, 1500);
+      navigate('/')
       toast.success('Your account has been successfully created 🥳', {
         position: "top-right",
         autoClose: 1500,
@@ -47,8 +45,6 @@ const Signup = () => {
   return (
     <>
       <div className='w-full h-screen  '>
-
-        <ToastContainer />
 
         <img className='hidden sm:block absolute w-full h-full object-cover ' src="https://assets.nflxext.com/ffe/siteui/vlv3/5fd505fa-f425-4a18-b3cc-00dd2638f541/d638b1fe-b44f-4cb3-b5d8-2106904c3be0/IN-en-20220704-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="/" />
         <div className='bg-black/60 fixed top-0 left-0 w-full h-screen'></div>
