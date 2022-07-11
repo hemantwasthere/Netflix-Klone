@@ -1,27 +1,55 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { UserAuth } from '../context/AuthContext'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Signup = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { user, signUp } = UserAuth()
+  const { signUp } = UserAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await signUp(email, password);
-      navigate('/')
+      setTimeout(() => {
+        navigate('/')
+      }, 1500);
+      toast.success('Your account has been successfully created 🥳', {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        darkmode: true,
+      });
     } catch (error) {
       console.log(error)
+      toast.error(error.message, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        darkmode: true,
+      });
     }
   }
 
   return (
     <>
       <div className='w-full h-screen  '>
+
+        <ToastContainer />
+
         <img className='hidden sm:block absolute w-full h-full object-cover ' src="https://assets.nflxext.com/ffe/siteui/vlv3/5fd505fa-f425-4a18-b3cc-00dd2638f541/d638b1fe-b44f-4cb3-b5d8-2106904c3be0/IN-en-20220704-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="/" />
         <div className='bg-black/60 fixed top-0 left-0 w-full h-screen'></div>
         <div className='fixed w-full px-4 py-24 z-50 '>
